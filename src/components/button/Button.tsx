@@ -5,7 +5,7 @@ import { theme } from "../../styles/Theme";
 type ButtonPropsType = {
   children: ReactNode;
   onClick: () => void;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 };
 
 export const Button = ({ children, onClick, isDisabled }: ButtonPropsType) => {
@@ -26,5 +26,8 @@ const ButtonStyled = styled.button`
 
   &:disabled {
     background-color: #407284;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
