@@ -25,5 +25,5 @@ export default defineConfig({
   build: {
     outDir: "build", // Устанавливаем директорию сборки на 'build'
   },
-  base: "/your-repo-name/", // Установите базовый путь для GitHub Pages
+  base: "/counter-vite/", // Установите базовый путь для GitHub Pages
 });
