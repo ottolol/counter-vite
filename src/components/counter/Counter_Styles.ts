@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   justify-content: center;
 
   height: 100vh;
+  background-color: ${theme.colors.primayBg};
 `;
 
 const Container = styled.div`
