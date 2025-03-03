@@ -32,13 +32,38 @@ const CounterBody = styled.div`
 
 const CounterBodyText = styled.span`
   color: ${theme.colors.secondaryBg};
-  font: bold 58px sans-serif; 
-`
+  font: bold 58px sans-serif;
+`;
 
 const WrapperButtons = styled.div`
   border: 4px solid ${theme.colors.secondaryBg};
   border-radius: 10px;
   padding: 25px 0;
+  text-align: center;
+`;
+
+// Settings component
+const SettingsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  text-align: left;
+`;
+
+const SettingsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+
+  span {
+    font: bold 29px sans-serif;
+    color: ${theme.colors.secondaryBg};
+    padding-right: 20px;
+  }
+
+  input {
+    text-align: center;
+  }
 `;
 
 export const S = {
@@ -48,4 +73,6 @@ export const S = {
   CounterBody,
   CounterBodyText,
   WrapperButtons,
+  SettingsWrapper,
+  SettingsContainer,
 };
