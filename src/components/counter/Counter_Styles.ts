@@ -23,16 +23,17 @@ const Border = styled.div`
 const CounterBody = styled.div`
   text-align: center;
   min-width: 250px;
-  background-color: ${theme.colors.secondaryBg};
+  background-color: ${theme.colors.primayBg};
   border: 4px solid ${theme.colors.secondaryBg};
   border-radius: 10px;
   margin: 0 0 15px 0;
   padding: 15px 0;
-
-  span {
-    font: bold 58px sans-serif;
-  }
 `;
+
+const CounterBodyText = styled.span`
+  color: ${theme.colors.secondaryBg};
+  font: bold 58px sans-serif; 
+`
 
 const WrapperButtons = styled.div`
   border: 4px solid ${theme.colors.secondaryBg};
@@ -45,5 +46,6 @@ export const S = {
   Container,
   Border,
   CounterBody,
+  CounterBodyText,
   WrapperButtons,
 };
