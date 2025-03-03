@@ -2,6 +2,7 @@ import { useState } from "react";
 import { theme } from "../../styles/Theme";
 import { Button } from "../button/Button";
 import { S } from "./Counter_Styles";
+import { styled } from "styled-components";
 
 export const Counter = () => {
   const [counter, setCounter] = useState(0);
@@ -22,19 +23,24 @@ export const Counter = () => {
     setSettings(!settings);
   };
 
+  const SetSettingsHandlerClick =() => {
+    setCounter();
+    setSettings(!settings);
+  }
+
   return (
     <S.Wrapper>
       <S.Container>
         {!settings ? (
           <S.Border>
             <S.CounterBody>
-              <span
+              <S.CounterBodyText
                 style={{
-                  color: maxCountRes ? "red" : `${theme.colors.primayBg}`,
+                  color: maxCountRes ? "red" : "",
                 }}
               >
                 {counter}
-              </span>
+              </S.CounterBodyText>
             </S.CounterBody>
             <S.WrapperButtons>
               <Button
@@ -55,12 +61,19 @@ export const Counter = () => {
         ) : (
           <S.Border>
             <S.CounterBody>
-              <div>Max Value:</div>
-              <div>Start Value:</div>
-              <span>123</span>
+              <SettingsWrapper>
+                <SettingsContainer>
+                  <span>Max Value:</span>
+                  <input type="number" />
+                </SettingsContainer>
+                <SettingsContainer>
+                  <span>Start Value:</span>
+                  <input type="number" value={counter} />
+                </SettingsContainer>
+              </SettingsWrapper>
             </S.CounterBody>
             <S.WrapperButtons style={{ textAlign: "center" }}>
-              <Button onClick={SetHandlerClick}>set</Button>
+              <Button onClick={SetSettingsHandlerClick}>set</Button>
             </S.WrapperButtons>
           </S.Border>
         )}
@@ -68,3 +81,22 @@ export const Counter = () => {
     </S.Wrapper>
   );
 };
+
+const SettingsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  text-align: left;
+`
+
+const SettingsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+
+  span {
+    font: bold 29px sans-serif;
+    color: ${theme.colors.secondaryBg};
+    padding-right: 20px;
+  } 
+`
