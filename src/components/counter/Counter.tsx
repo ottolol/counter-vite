@@ -7,6 +7,7 @@ import { styled } from "styled-components";
 export const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [settings, setSettings] = useState(false);
+  const [maxCount, setMaxCount] = useState(5);
 
   const IncHandlerClick = () => {
     setCounter(counter + 1);
@@ -16,17 +17,15 @@ export const Counter = () => {
     setCounter(0);
   };
 
-  const maxCount = 5;
   const maxCountRes = counter === maxCount;
 
   const SetHandlerClick = () => {
     setSettings(!settings);
   };
 
-  const SetSettingsHandlerClick =() => {
-    setCounter();
-    setSettings(!settings);
-  }
+  // const SetSettingsHandlerClick = () => {
+  //   setSettings(!settings);
+  // };
 
   return (
     <S.Wrapper>
@@ -64,16 +63,31 @@ export const Counter = () => {
               <SettingsWrapper>
                 <SettingsContainer>
                   <span>Max Value:</span>
-                  <input type="number" />
+                  <input
+                    min={0}
+                    type="number"
+                    value={maxCount}
+                    onChange={(e) => setMaxCount(Number(e.currentTarget.value))}
+                  />
                 </SettingsContainer>
                 <SettingsContainer>
                   <span>Start Value:</span>
-                  <input type="number" value={counter} />
+                  <input
+                    min={0}
+                    type="number"
+                    value={counter}
+                    onChange={(e) => setCounter(Number(e.currentTarget.value))}
+                  />
                 </SettingsContainer>
               </SettingsWrapper>
             </S.CounterBody>
             <S.WrapperButtons style={{ textAlign: "center" }}>
-              <Button onClick={SetSettingsHandlerClick}>set</Button>
+              <Button
+                onClick={SetHandlerClick}
+                isDisabled={counter < maxCount ? false : true}
+              >
+                set
+              </Button>
             </S.WrapperButtons>
           </S.Border>
         )}
@@ -87,7 +101,7 @@ const SettingsWrapper = styled.div`
   flex-direction: column;
   margin: 10px;
   text-align: left;
-`
+`;
 
 const SettingsContainer = styled.div`
   display: flex;
@@ -98,5 +112,9 @@ const SettingsContainer = styled.div`
     font: bold 29px sans-serif;
     color: ${theme.colors.secondaryBg};
     padding-right: 20px;
-  } 
-`
+  }
+
+  input {
+    text-align: center;
+  }
+`;
