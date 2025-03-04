@@ -3,7 +3,9 @@ import { Button } from "../button/Button";
 import { S } from "./Counter_Styles";
 
 export const Counter = () => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState<number>(() => {
+    return Number(localStorage.getItem("counterValue")) || 0;
+  });
   const [settings, setSettings] = useState(false);
   const [maxCount, setMaxCount] = useState(5);
 
@@ -25,15 +27,6 @@ export const Counter = () => {
   useEffect(() => {
     localStorage.setItem("counterValue", JSON.stringify(counter));
   }, [counter]);
-
-  // get items form localStorage
-  useEffect(() => {
-    const value = localStorage.getItem("counterValue");
-    if (value) {
-      const res = JSON.parse(value);
-      setCounter(res);
-    }
-  }, []);
 
   return (
     <S.Wrapper>
